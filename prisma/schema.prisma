@@ -14,11 +14,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String
+  email String @unique
   hash String
 
   firstName String?
   lastName String?
+
+  Todos Todo[]
+
+  @@map("Users")
+  
 }
 
 model Todo {
@@ -29,4 +34,9 @@ model Todo {
   title String
   description String?
   status Boolean
+
+  userId Int 
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("Todos")
 }
