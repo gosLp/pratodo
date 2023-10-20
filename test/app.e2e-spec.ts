@@ -4,6 +4,8 @@ import { PrismaService } from '../src/prisma/prisma.service';//'src/prisma/prism
 import {AppModule} from '../src/app.module';
 import * as pactum from 'pactum';
 import { AuthDto } from 'src/auth/dto';
+import { EditUserDto } from 'src/user/dto';
+import { CreateTodoDto, EditTodoDto } from 'src/todo/dto';
 
 describe('App e2e', ()=>{
   let app: INestApplication;
@@ -121,15 +123,141 @@ describe('App e2e', ()=>{
           .expectStatus(200);
       })
     });
-    describe('Edit User', ()=>{});
+    describe('Edit User', ()=>{
+      it('should edit user', ()=>{
+        const dto: EditUserDto = {
+          firstName: "Pratheek",
+          email: "Prat@email.com"
+        }
+        return pactum
+          .spec()
+          .patch('/users')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .withBody(dto)
+          .expectStatus(200)
+          .expectBodyContains(dto.firstName)
+          .expectBodyContains(dto.email);
+      })
+    });
   });
 
   describe('Todos', () => {
 
-    describe('Create Todo', () => {});
-    describe('Get Todos', () => {});
-    describe('Get Todo by Status', () => {});
-    describe('Edit Todos', () => {});
-    describe('Delete Todos', () => {});
+    describe('Get empty todos', ()=>{
+      it('should get empty', ()=>{
+        return pactum
+          .spec()
+          .get('/todos')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+          .expectBody([])
+      })
+    })
+    describe('Create Todo', () => {
+      const dto :CreateTodoDto = {
+        title: "Watch the cricket match",
+        description: " link is https://youtu.be/qdQNfF1-2rw?si=SmPvLccQkx1dGLBz",
+        status: false
+      }
+      it('should create todo', ()=>{
+        return pactum
+        .spec()
+        .post('/todos')
+        .withHeaders({
+          Authorization: 'Bearer $S{userAt}',
+        })
+        .withBody(dto)
+        .expectStatus(201)
+        .stores('todoId', 'id')
+      })
+    });
+    describe('Get Todos', () => {
+      it('should get todos', ()=>{
+        return pactum
+          .spec()
+          .get('/todos')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+          .expectJsonLength(1);
+      })
+    });
+    describe('Get Todo by id', ()=>{
+      it('should get todo by Id', ()=>{
+        return pactum
+          .spec()
+          .get('/todos/{id}')
+          .withPathParams('id', '$S{todoId}')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+          .expectBodyContains('$S{todoId}');
+      })
+    })
+    describe('Get Todos by Status', () => {
+      it('should get not complete todos', ()=>{
+        const status = '0';
+        return pactum
+          .spec()
+          .get('/todos')
+          .withQueryParams('status', 'false')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+      })
+    });
+    describe('Edit Todo by id', () => {
+      const dto: EditTodoDto = {
+        description: "Im done with it",
+        status: true,
+      } 
+      it('should edit todo by id', ()=>{
+        return pactum
+          .spec()
+          .patch('/todos/{id}')
+          .withBody(dto)
+          .withPathParams('id', '$S{todoId}')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectBodyContains(dto.description)
+          .expectBodyContains(dto.status)
+          .expectStatus(200);
+          
+      })
+    });
+    describe('Delete Todo by id', () => { 
+      it('should delete todo by id', ()=>{
+        return pactum
+          .spec()
+          .delete('/todos/{id}')
+          .withPathParams('id', '$S{todoId}')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          // .expectBodyContains(dto.description)
+          // .expectBodyContains(dto.status)
+          .expectStatus(204);
+          
+      });
+
+      it('should get empty todos', () =>{
+        return pactum
+          .spec()
+          .get('/todos')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+          .expectJsonLength(0);
+      })
+    });
   });
 });
