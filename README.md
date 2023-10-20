@@ -23,13 +23,26 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A nestjs based CRUD Todos application. Assignment 
+Done with nestjs, postgres and pactum for e2e testing.  
 
 ## Installation
 
 ```bash
 $ yarn install
+
+```
+
+## Database
+build the postgres DB based on the docker compose file
+to reset the db and applying all the migrations use the yarn db:dev:restart
+
+```bash
+$ docker-compose build
+
+$ docker-compose up
+
+$ yarn db:dev:restart
 ```
 
 ## Running the app
@@ -47,26 +60,31 @@ $ yarn run start:prod
 
 ## Test
 
+for the testing environment use the yarn db:test:restart to reset test db environment 
+
+End to end testing has been implemnted to test functionality of the following:
+1. Login
+2. Signup
+3. Get User info
+4. Edit User info
+5. Get User Todo
+6. Get Specific Todo
+7. Delete Todo based on Id
+8. Get Todo based on Status
+9. Edit Todo based on ID
+
 ```bash
-# unit tests
-$ yarn run test
 
 # e2e tests
 $ yarn run test:e2e
 
-# test coverage
-$ yarn run test:cov
+
 ```
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 

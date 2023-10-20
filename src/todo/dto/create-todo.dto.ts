@@ -1,5 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
+// Data transfer object for creating new todo
 export class CreateTodoDto{
 
     @IsString()

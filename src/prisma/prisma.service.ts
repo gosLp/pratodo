@@ -8,11 +8,16 @@ export class PrismaService extends PrismaClient {
         super({
             datasources: {
                 db: {
-                    url: config.get('DATABASE_URL'), //"postgresql://postgres:123@localhost:5434/nest?schema=public",
+                    url: config.get('DATABASE_URL'),  // get env variables using nestjs config service
                 },
             }
         });
     }
+    /**
+     * Clean the database by deleting all todos and users.
+     * 
+     * @returns A Promise that resolves when the database is cleaned.
+     */
     cleanDb(){
         return this.$transaction([
             this.todo.deleteMany(),

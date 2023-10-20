@@ -6,6 +6,13 @@ import { PrismaModule } from './prisma/prisma.module';
 import {  ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, UserModule, TodoModule, PrismaModule, ConfigModule.forRoot({ isGlobal: true,})],
+  
+  imports: [
+    AuthModule, // Auth Module
+    UserModule, // User Module
+    TodoModule, // Todo Module
+    PrismaModule, // Prisma Module
+    // Import the ConfigModule and configure it as a global module.
+    ConfigModule.forRoot({ isGlobal: true,})], // // Make the ConfigModule available throughout the entire application.
 })
 export class AppModule {}

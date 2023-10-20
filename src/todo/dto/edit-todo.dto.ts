@@ -1,5 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
+// DTO for editing todos 
 export class EditTodoDto{
 
     @IsString()
