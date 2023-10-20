@@ -15,6 +15,9 @@ export class AuthService {
         ){
 
     }
+    /** 
+        * @returns jwt access token
+    */
     async signin(dto: AuthDto) {
         // find the user
         const user = await this.prisma.user.findUnique({
@@ -37,7 +40,9 @@ export class AuthService {
         delete user.hash;
         return this.signToken(user.id, user.email);
     }
-
+    /** 
+        * @returns jwt access token
+    */
     async signup(dto: AuthDto) {
 
         // generate the password hash
@@ -67,7 +72,7 @@ export class AuthService {
 
         
     }
-
+    // Function to sign every credentials with Jwt expires in 15 mins
     async signToken(userId: number, email: string ): Promise<{access_token:string}>{
         const payload = {
             sub: userId,

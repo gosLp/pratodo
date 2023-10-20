@@ -3,7 +3,7 @@ import{
     ExecutionContext,
 } from "@nestjs/common";
 
-
+// Get user id or user in request.user made easier using nestjs meta programming
 export const GetUser = createParamDecorator(
     (data: string | undefined, ctx: ExecutionContext)=>{
         const request = ctx

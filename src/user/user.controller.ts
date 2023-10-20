@@ -7,7 +7,7 @@ import { JwtGuard } from '../auth/guard';//'src/auth/guard';
 import { EditUserDto } from './dto';
 import { UserService } from './user.service';
 
-
+// Guard means only those with jwt access token and access these routes
 @UseGuards(JwtGuard)
 @Controller('users')
 export class UserController {

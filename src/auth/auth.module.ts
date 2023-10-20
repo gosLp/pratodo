@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategy';
 
+// injecting our JwtStrategy and auth service [follows dependency injection pattern]
 @Module({
     imports: [JwtModule.register({})],
     controllers: [AuthController],

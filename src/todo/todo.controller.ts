@@ -12,12 +12,18 @@ export class TodoController {
     constructor(private todoService: TodoService){}
     
     // Route to get all todos for the authenticated user.
+    /** 
+        * @returns [todos] by user
+    */
     @Get()
     getTodos(@GetUser('id') userId: number){
         return this.todoService.getTodos(userId);
     }
 
     // Route to get Todos by id
+    /** 
+        * @returns particular Todo
+    */
     @Get(':id')
     getTodoById(
         @GetUser('id') userId: number,
@@ -27,6 +33,9 @@ export class TodoController {
     }
 
     // Route to get Todos by status
+    /** 
+        * @returns [Todo] by finished or unfinished
+    */
     @Get()
     getTodoByStatus(
         @GetUser('id') userId: number,
@@ -37,6 +46,9 @@ export class TodoController {
 
 
     // Create Todo with the Data transfer Object 
+    /** 
+        * @returns created todo
+    */
     @Post()
     createTodo(
         @GetUser('id') userId: number, 
@@ -46,6 +58,9 @@ export class TodoController {
     }
 
     // Route to Edit todo with the Edit Data transfer Object
+    /** 
+        * @returns edited Todo
+    */
     @Patch(':id')
     editTodoById(
         @GetUser('id') userId: number,
@@ -56,6 +71,9 @@ export class TodoController {
     }
 
     // Route to Delete Todo by id
+    /** 
+        * @returns 204 and nothing else
+    */
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete(':id')
     deleteTodoById(

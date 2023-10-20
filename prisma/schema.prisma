@@ -9,6 +9,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// User model defining the structure of our database
 model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -26,6 +28,7 @@ model User {
   
 }
 
+// Todo model schema that describes the structure of every todo in our database
 model Todo {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
