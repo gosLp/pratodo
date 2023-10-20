@@ -73,6 +73,12 @@ $ yarn run start:prod
 
 look at the route collection on postman [here](https://www.postman.com/spacecubes/workspace/pratodo/collection/12714878-1aba173c-3460-4908-8883-c7ca0d27ab48?action=share&creator=12714878)
 
+## Sample Environment Variables
+  ```bash
+  DATABASE_URL='postgresql://postgres:123@localhost:5434/nest?schema=public'
+  JWT_SECRET= 'super-secret'
+  ```
+  store these in an .env file
 ## Test
 
 for the testing environment use the yarn db:test:restart to reset test db environment 
