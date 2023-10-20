@@ -32,7 +32,7 @@ The application leverages the power of NestJS's design patterns and built-in mod
 ## Features
 NestJS: The application is built with NestJS, a Node.js framework that simplifies server-side development by providing a scalable, extensible, and maintainable architecture.
 
-Dependency Injection: Follows the dependency injection pattern, a core concept of NestJS, to enhance code modularity, improve testability, and make your codebase more maintainable.
+Dependency Injection: Follows the dependency injection pattern, a core concept of NestJS, to enhance code modularity, improve testability, and make your codebase more maintainable. 
 
 Pactum E2E Testing: Utilizes Pactum for end-to-end (E2E) testing. Pactum is a versatile testing library that allows you to write concise and expressive E2E tests to ensure the reliability of your application.
 

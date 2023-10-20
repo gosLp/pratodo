@@ -1,5 +1,6 @@
 import { IsEmail, IsOptional, IsString } from "class-validator";
 
+// Dto for editing User Details 
 export class EditUserDto{
 
     @IsEmail()
