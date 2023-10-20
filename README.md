@@ -78,7 +78,7 @@ look at the route collection on postman [here](https://www.postman.com/spacecube
   DATABASE_URL='postgresql://postgres:123@localhost:5434/nest?schema=public'
   JWT_SECRET= 'super-secret'
   ```
-  store these in an .env file
+  store these in an .env file at the root of the project
 ## Test
 
 for the testing environment use the yarn db:test:restart to reset test db environment 
