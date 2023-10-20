@@ -25,7 +25,18 @@
 ## Description
 A nestjs based CRUD Todos application. Assignment 
 Done with nestjs, postgres and pactum for e2e testing.  
+This project is a web application built with NestJS, a progressive Node.js framework, designed to help you create scalable and maintainable server-side applications. The project follows a dependency injection architecture, which promotes code modularity and reusability, making it easier to manage and extend your codebase.
 
+The application leverages the power of NestJS's design patterns and built-in modules to provide a robust and well-structured back end. It also incorporates Pactum for end-to-end (E2E) testing, ensuring that your application functions correctly from the user's perspective.
+
+## Features
+NestJS: The application is built with NestJS, a Node.js framework that simplifies server-side development by providing a scalable, extensible, and maintainable architecture.
+
+Dependency Injection: Follows the dependency injection pattern, a core concept of NestJS, to enhance code modularity, improve testability, and make your codebase more maintainable.
+
+Pactum E2E Testing: Utilizes Pactum for end-to-end (E2E) testing. Pactum is a versatile testing library that allows you to write concise and expressive E2E tests to ensure the reliability of your application.
+
+Modularity: NestJS's module system encourages code modularity, allowing you to organize your application into manageable components and promote reusability.
 ## Installation
 
 ```bash
